@@ -13,3 +13,11 @@ DB_Backend_project
 생각(하고 싶은)한 프로젝트 기술 스택 : spring-boot 심화 , JPA
 
 개발 기한 : 2M
+
+-----------------------------------
+**2022-11-01 프로젝트 주제 및 기술스택 정의** 
+
+프로젝트 주제 : 애완동물 매니아를 위한 커뮤니티 게시판 
+
+front-end : http, css, javascript
+back-end : spring MVC, JWT, mySQL
