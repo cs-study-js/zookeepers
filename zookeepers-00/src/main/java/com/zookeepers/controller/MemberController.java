@@ -1,4 +1,4 @@
-package project_db_backend.controller;
+package com.zookeepers.controller;
 
 public interface MemberController {
 

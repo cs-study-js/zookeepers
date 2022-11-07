@@ -1,4 +1,4 @@
-package project_db_backend.service;
+package com.zookeepers.service;
 
 public interface MemberService {
 

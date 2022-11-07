@@ -1,10 +1,10 @@
-package project_db_backend.keepers;
+package com.zookeepers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KeepersApplicationTests {
+class Zookeepers00ApplicationTests {
 
 	@Test
 	void contextLoads() {
