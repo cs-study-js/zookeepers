@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper">
+	<head>
+		<title>Board</title>
+		<meta http-equiv="Content_Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="/css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="/css/board.css">
+		
+	</head>
+	<body>
+		<div class="login"><a href = "login.html">로그인.&emsp;</a></div>
+		
+		<div class="icon">
+			<div class="align"><a href = "/">zookeepers.</a></div>
+		</div>
+		<div class="navbar">
+			<ul class = "dep1">
+				<li>
+					<a href="/">오늘의 베스트</a>
+				</li>
+				<li>
+					<a href="Board.html">커뮤니티</a>
+				</li>
+				<li>
+					<a href="TBoard.html">거래게시판</a>
+				</li>
+				<li>
+					<a href="Mypage.html">마이페이지</a>
+				</li>
+			</ul>
+		</div>
+		<br><br>
+		<div class="main-content">
+			<div class="category">
+				<ul>		
+					<li>{카테고리1}</li>
+					<li>{카테고리2}</li>
+					<li>{카테고리3}</li>
+				</ul>
+			</div>
+			<div class="boardlist">
+				<table>
+					<tr>
+						<th style="padding-right:350; padding-left:25;">제목</th>
+						<th>작성자</th>
+					</tr>
+					<tr>
+						<td><a href="Board_detail.html" style="text-decoration: none; color: black;">{board1.title}</a></td>
+						<td>{board1.member}</td>
+					</tr>
+					<tr>
+						<td>{board2.title}</td>
+						<td>{board2.member}</td>
+					</tr>
+					<tr>
+						<td>{board3.title}</td>
+						<td>{board3.member}</td>
+					</tr>
+					<tr>
+						<td>{board4.title}</td>
+						<td>{board4.member}</td>
+					</tr>
+					<tr>
+						<td>{board5.title}</td>
+						<td>{board5.member}</td>
+					</tr>
+					<tr>
+						<td style="padding-bottom:100">...</td>
+					</tr>
+				</table>
+			</div>
+			<div class="dummypage">
+				<p> 1 2 3 4 5 NEXT> </p>
+				<input type="text"><button type="submit" value="search"></button>
+			</div>
+		</div>
+		
+	</body>
+	<footer>
+			footer
+	</footer>
+</div>
+</html>
