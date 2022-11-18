@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper">
+	<head>
+		<title>Login</title>
+		<meta http-equiv="Content_Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="/css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="/css/login.css">
+		
+	</head>
+	<body>
+		<div class="login"><a href = "login.html">로그인.&emsp;</a></div>
+		
+		<div class="icon">
+			<div class="align"><a href = "/">zookeepers.</a></div>
+		</div>
+		<div class="navbar">
+			<ul class = "dep1">
+				<li>
+					<a href="/">오늘의 베스트</a>
+				</li>
+				<li>
+					<a href="Board.html">커뮤니티</a>
+				</li>
+				<li>
+					<a href="TBoard.html">거래게시판</a>
+				</li>
+				<li>
+					<a href="Mypage.html">마이페이지</a>
+				</li>
+			</ul>
+		</div>
+		<br><br><br>
+		<div class="main-content">
+			<div class="emptyplace"></div>
+			<div class="logform">
+				<h2>LOGIN</h2><br><hr>
+					<div class = "logform-place"></div>
+					<div class = "inputform">
+						<form name="loginform" method="POST">
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	ID &ensp;: <input id="member_id" type="text" placeholder="아이디를 입력하세요."><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	PW : <input id= "member_password" type="password" placeholder="비밀번호를 입력하세요">&nbsp;
+							<input id="login-button" type="submit" value="login"><br>					
+						</form>&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						<button class="join-button" type="button" onclick="location.href='join.html'">join</button>
+					</div>
+			</div>
+		</div>
+	</body>
+	<footer>
+			footer
+	</footer>
+</div>
+</html>
