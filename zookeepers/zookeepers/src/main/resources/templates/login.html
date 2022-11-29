@@ -8,7 +8,7 @@
 		
 	</head>
 	<body>
-		<div class="login"><a href = "login.html">로그인.&emsp;</a></div>
+		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
@@ -19,13 +19,13 @@
 					<a href="/">오늘의 베스트</a>
 				</li>
 				<li>
-					<a href="Board.html">커뮤니티</a>
+					<a href="Board.do">커뮤니티</a>
 				</li>
 				<li>
-					<a href="TBoard.html">거래게시판</a>
+					<a href="TBoard.do">거래게시판</a>
 				</li>
 				<li>
-					<a href="Mypage.html">마이페이지</a>
+					<a href="Mypage.do">마이페이지</a>
 				</li>
 			</ul>
 		</div>
@@ -36,12 +36,27 @@
 				<h2>LOGIN</h2><br><hr>
 					<div class = "logform-place"></div>
 					<div class = "inputform">
-						<form name="loginform" method="POST">
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	ID &ensp;: <input id="member_id" type="text" placeholder="아이디를 입력하세요."><br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	PW : <input id= "member_password" type="password" placeholder="비밀번호를 입력하세요">&nbsp;
-							<input id="login-button" type="submit" value="login"><br>					
-						</form>&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-						<button class="join-button" type="button" onclick="location.href='join.html'">join</button>
+						<form name="loginform" method="POST">	
+							<table>
+								<tr>
+									<td rowspan="3">&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+									<td>
+										ID &ensp;: <input id="member_id" type="text" placeholder="아이디를 입력하세요.">
+									</td>
+								</tr>
+									<td>
+										PW : <input id= "member_password" type="password" placeholder="비밀번호를 입력하세요">
+									</td>
+									<td>
+										<input id="login-button" type="submit" value="login">
+									</td>
+								<tr>
+									<td>
+										&emsp;&emsp;&ensp;<button class="join-button" type="button" onclick="location.href='join.do'">join</button>
+									</td>
+								</tr>
+							</table>					
+						</form>
 					</div>
 			</div>
 		</div>
