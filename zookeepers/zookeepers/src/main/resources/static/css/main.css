@@ -1,0 +1,28 @@
+.main-content {
+	display: flex;
+	flex-direction:row;
+	height:100%
+}
+
+
+.main-content .best-commu{
+	width:33%;
+}
+
+.main-content .best-info{
+	width:33%;
+}
+
+.main-content .best-trade{
+	width:33%;
+}
+
+.main-content ul > li > a{
+	text-decoration: none;
+	color: inherit;
+	text-align: center;
+}
+.main-content >a{
+	text-align: right;
+	
+}
