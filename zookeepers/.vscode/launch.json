@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ZookeepersApplication<zookeepers>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.zookepers.zookeepers.ZookeepersApplication",
+            "projectName": "zookeepers",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
