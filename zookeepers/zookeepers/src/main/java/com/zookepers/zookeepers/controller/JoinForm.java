@@ -1,9 +1,7 @@
 package com.zookepers.zookeepers.controller;
 
-import lombok.Getter;
 
-@Getter
-public class MemberForm {
+public class JoinForm {
     private String member_id;
 
     private String member_password;

@@ -8,7 +8,13 @@
 		
 	</head>
 	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMember_nickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
@@ -38,13 +44,13 @@
 					</caption>
 					<tr>
 						<td rowspan="3"> img </td>
-						<td colspan="1">사용자 ID</td>
-						<td colspan="1">등급</td>
-						<td colspan="2">작성 게시물 수</td>
+						<td colspan="1" th:text="loginUser.getMember_id()">사용자 ID</td>
+						<td colspan="1" th:text="loginUser.getMember_grade()">등급</td>
+						<td colspan="2" th:text="">작성 게시물 수</td>
 					</tr>
 					<tr>
-						<td colspan="2">닉네임(변경 가능)</td>
-						<td colspan="2">작성 댓글 수</td>
+						<td colspan="2" th:text="loginUser.getMember_nickname()">닉네임(변경 가능)</td>
+						<td colspan="2" th:text="">작성 댓글 수</td>
 					</tr>
 					<tr>
 						<td colspan="2">판매 횟수</td>

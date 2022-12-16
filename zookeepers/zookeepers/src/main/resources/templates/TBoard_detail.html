@@ -7,7 +7,13 @@
 		<link rel="stylesheet" type="text/css" href="/css/tboard_detail.css">
 	</head>
 	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMember_nickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>

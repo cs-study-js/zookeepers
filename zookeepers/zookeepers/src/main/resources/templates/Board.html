@@ -8,8 +8,14 @@
 		
 	</head>
 	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
-		
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMember_nickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
+
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
 		</div>
@@ -43,36 +49,26 @@
 					<tr>
 						<th style="padding-right:350; padding-left:25;">제목</th>
 						<th>작성자</th>
+						<th>등록일</th>
 					</tr>
-					<tr>
-						<td><a href="Board_detail.do" style="text-decoration: none; color: black;">{board1.title}</a></td>
-						<td>{board1.member}</td>
-					</tr>
-					<tr>
-						<td>{board2.title}</td>
-						<td>{board2.member}</td>
-					</tr>
-					<tr>
-						<td>{board3.title}</td>
-						<td>{board3.member}</td>
-					</tr>
-					<tr>
-						<td>{board4.title}</td>
-						<td>{board4.member}</td>
-					</tr>
-					<tr>
-						<td>{board5.title}</td>
-						<td>{board5.member}</td>
-					</tr>
-					<tr>
-						<td style="padding-bottom:100">...</td>
+					<tr th:each="board : ${list}">
+						<td><a th:text = "${board.Board_title}" th:href="@{/Board_detail.do(boardNo=${board.getBoard_no()})}" style="text-decoration: none; color: black;">{board1.title}</a></td>
+						<td th:text = "${board.Board_writer}"></td>
+						<td th:text = "${board.Board_date}"></td>
 					</tr>
 				</table>
+				<th:bolck th:if="${loginUser != null}">
+					<button class="write" type="button" onclick="location.href='Board_write.do'" style="float:right">wirte</button>
+				</th:bolck>
 			</div>
-			<button class="write" type="button" onclick="location.href='Board_write.do'">wirte</button>
-			<div class="dummypage">
-				<p> 1 2 3 4 5 NEXT> </p>
-				<input type="text"><button type="submit" value="search"></button>
+			<div class="page">
+				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+					<a th:if="${page != nowPage}" th:href="@{/Board.do(page=${page-1})}" th:text="${page}" style="text-decoration: none; color: black;"></a>
+					<strong th:if="${page == nowPage}" th:text="${page}" style="color : grey"></a>
+				</th:block>
+				<form name="board_search" action="Board_search.do" method="POST">
+				<input name="search" placeholder="키워드 입력" type="text"><button type="submit" value="search">search</button>
+				</form>
 			</div>
 		</div>
 		

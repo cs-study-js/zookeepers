@@ -1,24 +1,26 @@
-package com.zookepers.zookeepers.domain;
+package com.zookepers.zookeepers.Entity;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="member")
+@DynamicInsert
 public class Member {
     @Id
     @Column(name="Member_no")
-    private String member_no;
+    private String memberno;
     
-
 	public String getMember_no() {
-		return this.member_no;
+		return this.memberno;
 	}  
 
 	public void setMember_no(String member_no) {
-		this.member_no = member_no;
+		this.memberno = member_no;
 	}
 
     @Column(name="Member_name", unique=true)
@@ -34,14 +36,14 @@ public class Member {
 
 
     @Column(name="Member_ID")
-    private String member_id;
+    private String memberid;
 
     public String getMember_id(){
-        return this.member_id;
+        return this.memberid;
     }
 
 	public void setMember_id (String member_id) {
-		this.member_id = member_id;
+		this.memberid = member_id;
 	}
 
 	@Column(name="Member_password")
@@ -61,8 +63,6 @@ public class Member {
 	public String getMember_nickname() {
 		return this.member_nickname;
     }
-
-
 
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;

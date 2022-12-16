@@ -7,7 +7,13 @@
 		<link rel="stylesheet" type="text/css" href="/css/board_detail.css">
 	</head>
 	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMember_nickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
@@ -31,17 +37,19 @@
 		<br><br>
 		<div class="main-content">
 			<div class="title_space">
-				<a href="" style="text-decoration: none">카테고리</a><!-- 카테고리맞는 게시글 조회  -->
+				<a th:text="${board.getBoard_category()}" style="text-decoration: none">카테고리</a><!-- 카테고리맞는 게시글 조회  -->
 				<table>
 					<tr>
-						<th rowspan="3" width="700px" style="text-align:left">제목입니다!!!!{제목}</th>
-						<td>{작성자},{판매등급}</td>
+						<th th:text="${board.getBoard_title()}" rowspan="3" width="700px" style="text-align:left">제목입니다!!!!{제목}</th>
+						<td th:text="${board.getBoard_writer()}">{작성자}</td>
+						<td th:text="${writeUser.getMember_grade()}">{등급}</td>
 					</tr>
 					<tr>
-						<td>{작성날짜},{작성시간}</td>
+						<td style="float:left" th:text="${board.getBoard_date()}">{작성시간}</td>
 					</tr>
-					<tr>
-						<td>{수정날짜},{수정시간}</td>
+					<tr th:if="${loginUser!=null}">
+						<td><a th:if="${loginUser.getMember_no()==board.getMember_no()}" th:href="@{Board_delete.do(boardNo=${board.getBoard_no()})}" style="text-decoration: none; color: black;">글삭제</a></td>
+						<td><a th:if="${loginUser.getMember_no()==board.getMember_no()}" th:href="@{Board_modify.do/{boardNo}(boardNo=${board.getBoard_no()})}" style="text-decoration: none; color: black;">글 수정</a></td>
 					</tr>
 				</table>
 			</div>
@@ -49,22 +57,22 @@
 			<div class="body_space">
 				<br>
 				
-				<p>
+				<p th:text="${board.getBoard_detail()}">
 				{detail}
 				</p>
 				<br><br><br>
 				
-				<button type="button">good</button><!-- 추천수 증가 -->
-				<button type="button">bad</button><!-- 비추 증가 -->
+				<button type="button">good</button><p th:text="${board.getBoard_like()}"> {like count}</p><!-- 추천수 증가 -->
+				<button type="button">bad</button><p th:text="${board.getBoard_bad()}"> {bad count}</p><!-- 비추 증가 -->
+
 			</div>
 			<hr><br>
 			<div class="comment_space">
 				{comment}<br>
 				{comment}<br>
-				<form name="commentform" method="POST">
-					<input type="text" width="600">
-					<button type="submit" value="enter">enter</button>
-					
+				<form name="commentform" action="Board_comment.do" method="POST">
+					<input name="Com_detail" type="text" width="600">
+					<button type="submit" value="enter">submit</button>				
 				</form>
 			</div>
 		</div>
