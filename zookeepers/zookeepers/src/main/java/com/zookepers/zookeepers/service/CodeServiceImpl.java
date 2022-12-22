@@ -7,7 +7,7 @@ import com.zookepers.zookeepers.repository.CodeRepository;
 @Service
 public class CodeServiceImpl implements CodeService {
 
-    CodeRepository codeRepository;
+    private final CodeRepository codeRepository;
 
     public CodeServiceImpl(CodeRepository codeRepository){
         this.codeRepository = codeRepository;

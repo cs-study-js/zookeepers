@@ -8,7 +8,13 @@
 		
 	</head>
 	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
@@ -19,13 +25,13 @@
 					<a href="/">오늘의 베스트</a>
 				</li>
 				<li>
-					<a href="Board.do">커뮤니티</a>
+					<a href="board.do">커뮤니티</a>
 				</li>
 				<li>
-					<a href="TBoard.do">거래게시판</a>
+					<a href="tboard.do">거래게시판</a>
 				</li>
 				<li>
-					<a href="Mypage.do">마이페이지</a>
+					<a href="mypage.do">마이페이지</a>
 				</li>
 			</ul>
 		</div>
@@ -36,16 +42,16 @@
 				<h2>LOGIN</h2><br><hr>
 					<div class = "logform-place"></div>
 					<div class = "inputform">
-						<form name="loginform" action="member_login.do" method="POST">	
+						<form name="loginform" action="/memberLogin.do" method="POST">	
 							<table>
 								<tr>
 									<td rowspan="3">&emsp;&emsp;&emsp;&emsp;&emsp;</td>
 									<td>
-										ID &ensp;: <input name="member_id" type="text" placeholder="아이디를 입력하세요.">
+										ID &ensp;: <input name="memberId" type="text" placeholder="아이디를 입력하세요.">
 									</td>
 								</tr>
 									<td>
-										PW : <input name= "member_password" type="password" placeholder="비밀번호를 입력하세요">
+										PW : <input name= "memberPassword" type="password" placeholder="비밀번호를 입력하세요">
 									</td>
 									<td>
 										<button name="login-button" type="submit" value="login">login</button>

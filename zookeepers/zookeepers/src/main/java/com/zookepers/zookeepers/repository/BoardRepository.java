@@ -7,21 +7,21 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.zookepers.zookeepers.Entity.board;
+import com.zookepers.zookeepers.entity.BoardEntity;
 
-public interface BoardRepository extends JpaRepository <board,String>{
-    public board save(board b);
+public interface BoardRepository extends JpaRepository <BoardEntity,String>{
+    public BoardEntity save(BoardEntity b);
 
-    public List<board> findAll();
+    public List<BoardEntity> findAll();
 
-    public List<board> findAllByBoardtitle(String board_title);
+    public List<BoardEntity> findByBoardTitle(String boardTitle);
 
-    public List<board> findAllByBoardcategory(String board_category);
+    public List<BoardEntity> findByBoardCategory(String boardCategory);
 
-    public board findByBoardno(String board_no);
+    public BoardEntity findByBoardNo(String boardNo);
 
     @Transactional
-    public void deleteByBoardno(String board_no);
+    public void deleteByBoardNo(String boardNo);
 
     @Query(value = "SELECT fn_seq('ZBO')", nativeQuery = true)
     String getIdFromSeq();

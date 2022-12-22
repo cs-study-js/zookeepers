@@ -8,7 +8,13 @@
 		
 	</head>
 	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
@@ -19,30 +25,30 @@
 					<a href="/">오늘의 베스트</a>
 				</li>
 				<li>
-					<a href="Board.do">커뮤니티</a>
+					<a href="board.do">커뮤니티</a>
 				</li>
 				<li>
-					<a href="TBoard.do">거래게시판</a>
+					<a href="tboard.do">거래게시판</a>
 				</li>
 				<li>
-					<a href="Mypage.do">마이페이지</a>
+					<a href="mypage.do">마이페이지</a>
 				</li>
 			</ul>
 		</div>
 		<br><br>
 		<div class="main-content">
 			<div class="joindiv">
-				<form name="joinform" action="member_join.do" method="POST">
+				<form name="joinform" action="memberJoin.do" method="POST">
 					<br>
-					아이디 : <button type="button" style="float: right;">중복확인</button>  &nbsp; <input name="member_id" type="text" style="float: right;"> <br>
-					<br>비밀번호 : <input name="member_password" type="password" style="float: right;"><br>
-					<br>비밀번호 확인 : <input name="check_password" type="password" style="float: right;"><br>
-					<br>이름 : <input name="member_name" type="text" style="float: right;"><br><br>
-					닉네임 : <input name="member_nickname" type="text" style="float: right;"><br><br>
-					전화번호 : <input name="member_phonenum" type="text" placeholder = "ex)010-1234-5678(-포함)" style="float: right;"><br><br>
-					주소 :<button type="button" style="float: right;">찾기</button> <input name="dummy_address" type="text" style="float: right;"> &nbsp; <br>
-					     <input name="dummy_address2" type="text" style="float: right;" size = "30"><br><br>
-					상세주소 : <input name="member_detailaddress" type="text" style="float: right;" size = "30"><br><br>
+					아이디 : <button type="button" style="float: right;">중복확인</button>  &nbsp; <input name="memberId" type="text" style="float: right;"> <br>
+					<br>비밀번호 : <input name="memberPassword" type="password" style="float: right;"><br>
+					<br>비밀번호 확인 : <input name="checkPassword" type="password" style="float: right;"><br>
+					<br>이름 : <input name="memberName" type="text" style="float: right;"><br><br>
+					닉네임 : <input name="memberNickname" type="text" style="float: right;"><br><br>
+					전화번호 : <input name="memberPhonenum" type="text" placeholder = "ex)010-1234-5678(-포함)" style="float: right;"><br><br>
+					주소 :<button type="button" style="float: right;">찾기</button> <input name="dummyAddress" type="text" style="float: right;"> &nbsp; <br>
+					     <input name="dummyAddress2" type="text" style="float: right;" size = "30"><br><br>
+					상세주소 : <input name="memberDetailaddress" type="text" style="float: right;" size = "30"><br><br>
 					<button class="join_button" type="submit" style="float: right;">회원가입</button><br><br><br>
 				</form>
 			</div>

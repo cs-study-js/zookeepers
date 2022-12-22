@@ -1,8 +1,11 @@
 package com.zookepers.zookeepers.dto;
 
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class BoardSearchDto {
     
     private String title;

@@ -12,7 +12,7 @@
 			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
 		</th:block>
 		<th:bolck th:if="${loginUser != null}">
-			<div class="logout"> <a th:text="${loginUser.getMember_nickname()}">userId</a> 
+			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
 				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
 		</th:bolck>
 		
@@ -25,13 +25,13 @@
 					<a href="/">오늘의 베스트</a>
 				</li>
 				<li>
-					<a href="Board.do">커뮤니티</a>
+					<a href="board.do">커뮤니티</a>
 				</li>
 				<li>
-					<a href="TBoard.do">거래게시판</a>
+					<a href="tboard.do">거래게시판</a>
 				</li>
 				<li>
-					<a href="Mypage.do">마이페이지</a>
+					<a href="mypage.do">마이페이지</a>
 				</li>
 			</ul>
 		</div>
@@ -53,7 +53,7 @@
 						<th>작성자</th>
 					</tr>
 					<tr>
-						<td><a href="Board_detail.do" style="text-decoration: none; color: black;">{board1.title}</a></td>
+						<td><a href="tboardDetail.do" style="text-decoration: none; color: black;">{board1.title}</a></td>
 						<td>{board1.price}</td>
 						<td>{board1.status}</td>
 						<td>{board1.member}</td>
@@ -89,7 +89,7 @@
 			</div>
 			<div class="dummypage">
 				<p> 1 2 3 4 5 NEXT> </p>
-				<form name="tboard_search" action="TBoard_search.do" method="POST">
+				<form name="tboardSearch" action="tboardSearch.do" method="POST">
 				<input type="text"><button type="submit" value="search">search</button>
 				</form>
 			</div>
