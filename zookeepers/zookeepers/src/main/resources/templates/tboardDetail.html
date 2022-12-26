@@ -5,9 +5,14 @@
 		<meta http-equiv="Content_Type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" type="text/css" href="/css/navbar.css">
 		<link rel="stylesheet" type="text/css" href="/css/tboard_detail.css">
-	</head>
-	<body>
-		<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+	</head>	<body>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
 		
 		<div class="icon">
 			<div class="align"><a href = "/">zookeepers.</a></div>
@@ -18,13 +23,13 @@
 					<a href="/">오늘의 베스트</a>
 				</li>
 				<li>
-					<a href="Board.do">커뮤니티</a>
+					<a href="board.do">커뮤니티</a>
 				</li>
 				<li>
-					<a href="TBoard.do">거래게시판</a>
+					<a href="tboard.do">거래게시판</a>
 				</li>
 				<li>
-					<a href="Mypage.do">마이페이지</a>
+					<a href="mypage.do">마이페이지</a>
 				</li>
 			</ul>
 		</div>
@@ -72,10 +77,10 @@
 			</div>
 			
 			<hr><br>
-			<div class="comment_space">
+			<div class="comment-space">
 				{comment}<br>
 				{comment}<br>
-				<form name="commentform" method="POST">
+				<form name="commentForm" method="POST">
 					<input type="text" width="600">
 					<button type="submit" value="enter">enter</button>
 					

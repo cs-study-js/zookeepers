@@ -1,0 +1,85 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper">
+	<head>
+		<title>Board_datail</title>
+		<meta http-equiv="Content_Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="/css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="/css/boardDetail.css">
+	</head>
+	<body>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
+		
+		<div class="icon">
+			<div class="align"><a href = "/">zookeepers.</a></div>
+		</div>
+		<div class="navbar">
+			<ul class = "dep1">
+				<li>
+					<a href="/">오늘의 베스트</a>
+				</li>
+				<li>
+					<a href="board.do">커뮤니티</a>
+				</li>
+				<li>
+					<a href="tboard.do">거래게시판</a>
+				</li>
+				<li>
+					<a href="mypage.do">마이페이지</a>
+				</li>
+			</ul>
+		</div>
+		<br><br>
+		<div class="main-content">
+			<div class="title_space">
+				<a th:text="${board.getBoardCategory()}" style="text-decoration: none">카테고리</a><!-- 카테고리맞는 게시글 조회  -->
+				<table>
+					<tr>
+						<th th:text="${board.getBoardTitle()}" rowspan="3" width="700px" style="text-align:left">제목입니다!!!!{제목}</th>
+						<td th:text="${board.getBoardWriter()}">{작성자}</td>
+						<td th:text="${writeUser.getMemberGrade()}">{등급}</td>
+					</tr>
+					<tr>
+						<td style="float:left" th:text="${board.getBoardDate()}">{작성시간}</td>
+					</tr>
+					<tr th:if="${loginUser!=null}">
+						<td><a th:if="${loginUser.getMemberNo()==board.getMemberNo()}" th:href="@{boardDelete.do(boardNo=${board.getBoardNo()})}" style="text-decoration: none; color: black;">글삭제</a></td>
+						<td><a th:if="${loginUser.getMemberNo()==board.getMemberNo()}" th:href="@{boardModify.do/{boardNo}(boardNo=${board.getBoardNo()})}" style="text-decoration: none; color: black;">글 수정</a></td>
+					</tr>
+				</table>
+			</div>
+			<hr>
+			<div class="body_space">
+				<br>
+				
+				<p th:text="${board.getBoardDetail()}">
+				{detail}
+				</p>
+				<br><br><br>
+				
+				<button type="button">good</button><p th:text="${board.getBoardLike()}"> {like count}</p><!-- 추천수 증가 -->
+				<button type="button">bad</button><p th:text="${board.getBoardBad()}"> {bad count}</p><!-- 비추 증가 -->
+
+			</div>
+			<hr><br>
+			<div class="comment_space">
+				{comment}<br>
+				{comment}<br>
+				<form name="commentform" action="boardComment.do" method="POST">
+					<input name="Com_detail" type="text" width="600">
+					<button type="submit" value="enter">submit</button>				
+				</form>
+			</div>
+		</div>
+		
+	</body>
+	<footer>
+			footer
+	</footer>
+</div>
+</html>

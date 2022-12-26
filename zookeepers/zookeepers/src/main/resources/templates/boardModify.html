@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper">
+	<head>
+		<title>Board_modify</title>
+		<meta http-equiv="Content_Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="/css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="/css/boardWrite.css">
+		
+	</head>
+	<body>
+		<th:block th:if="${loginUser == null}">
+			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
+		</th:block>
+		<th:bolck th:if="${loginUser != null}">
+			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
+				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+		</th:bolck>
+		
+		<div class="icon">
+			<div class="align"><a href = "/">zookeepers.</a></div>
+		</div>
+		<div class="navbar">
+			<ul class = "dep1">
+				<li>
+					<a href="/">오늘의 베스트</a>
+				</li>
+				<li>
+					<a href="board.do">커뮤니티</a>
+				</li>
+				<li>
+					<a href="tboard.do">거래게시판</a>
+				</li>
+				<li>
+					<a href="mypage.do">마이페이지</a>
+				</li>
+			</ul>
+		</div>
+		<br><br>
+		<div class="main-content">
+            <h4>글을 작성하는 공간입니다.</h4>
+            <div id="write_area">
+                <form name="board_write_form" action="write.do" method="post">
+                    <div class="title">
+                        <textarea name="board_title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" style="resize:none;"></textarea>
+                    </div>
+					<div class="category">
+						<select name="boardCategory">
+							<option value="BC01" selected="selected">자유글</option>
+							<option value="BC02">정보글</option>
+							<option value="BC03" >홍보글</option>
+							<option value="BC04">건의글</option>
+						</select>
+					</div>
+                    <div class="writeDetail"><br></div>
+                    <div id="in_content">
+                        <textarea name="boardDetail" placeholder="내용" style="resize:none;" required></textarea>
+                    </div>
+ 
+                      <input type="file" name="SelectFile" />
+ 
+ 
+                    <div class="bt_se">
+                        <button type="submit" href="board.do">write</button>
+                    </div>
+                </form>
+            </div>
+		</div>
+		
+	</body>
+	<footer>
+			footer
+	</footer>
+</div>
+</html>
