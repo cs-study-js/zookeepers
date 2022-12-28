@@ -1,14 +1,12 @@
 package com.zookepers.zookeepers.service.board;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.zookepers.zookeepers.dto.BoardWriteDto;
+import com.zookepers.zookeepers.dto.board.BoardWriteRequestDto;
 import com.zookepers.zookeepers.entity.BoardEntity;
 import com.zookepers.zookeepers.repository.BoardRepository;
 import com.zookepers.zookeepers.repository.MemberRepository;
@@ -25,19 +23,14 @@ public class BoardServiceimpl implements BoardService{
     }
     
     @Override
-    public void create(BoardWriteDto boardWriteDto) {
-        BoardEntity boardEntity = BoardEntity.builder().
-                boardNo(boardRepository.getIdFromSeq()).
-                memberNo(boardWriteDto.getMemberNo()).
-                boardWriter(memberRepository.findByMemberNo(boardWriteDto.getMemberNo()).getMemberNickname()).
-                boardTitle(boardWriteDto.getBoardTitle()).
-                boardCategory(boardWriteDto.getBoardCategory()).
-                boardDetail(boardWriteDto.getBoardDetail()).
-                boardImg(boardWriteDto.getBoardFile()).
-                boardDate(LocalDateTime.now()).
-                build();
-                
-        boardRepository.save(boardEntity);
+    public void create(BoardWriteRequestDto boardWriteRequestDto) {
+    
+        String boardWriter = memberRepository.findByMemberNo(boardWriteRequestDto.getMemberNo()).getMemberNickname();  //boardWriter value 조회
+        String boardNo = boardRepository.getIdFromSeq();                                                                //boardNo 시퀀스값 생성
+
+        BoardEntity boardEntity = boardWriteRequestDto.toEntity(boardNo,  boardWriter);                                //boardWriteDto-> boardEntity
+        
+        boardRepository.save(boardEntity);                                                                              // boardEntity값 repository로 전송 
     }
 
     @Override
@@ -67,7 +60,7 @@ public class BoardServiceimpl implements BoardService{
 
     @Override
     public void boardDelete(String boardNo) {
-        boardRepository.deleteByBoardNo(boardNo);        
+        boardRepository.deleteByBoardNo(boardNo);        // 게시판 삭제
     }
     
 }

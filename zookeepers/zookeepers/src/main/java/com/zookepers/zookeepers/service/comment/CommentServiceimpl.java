@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.zookepers.zookeepers.dto.CommentWriteDto;
+import com.zookepers.zookeepers.dto.comment.CommentWriteRequestDto;
 import com.zookepers.zookeepers.entity.CommentEntity;
 import com.zookepers.zookeepers.repository.CommentRepository;
 import com.zookepers.zookeepers.repository.MemberRepository;
@@ -22,19 +22,11 @@ public class CommentServiceimpl implements CommentService{
     }
 
     @Override
-    public void write(CommentWriteDto commentDto) {
-        CommentEntity commentEntity = 
-        CommentEntity.builder().
-                     comNo(commentRepository.getIdFromSeq()).
-                     comDetail(commentDto.getComDetail()).
-                     comWriter(memberRepository.findByMemberNo(commentDto.getMemberNo()).getMemberNickname()).
-                     memberNo(commentDto.getMemberNo()).
-                     boardNo(commentDto.getBoardNo()).
-                     comClass(0).
-                     comDate(LocalDateTime.now()).
-                     comGroup(0).
-                     comOrder(0).
-                     build();
+    public void write(CommentWriteRequestDto commentDto) {
+
+        String boardWriter = memberRepository.findByMemberNo(commentDto.getMemberNo()).getMemberNickname();     //Comment 작성자 닉네임
+        String CommentNo = commentRepository.getIdFromSeq();                                                    //Comment 시퀀스
+        CommentEntity commentEntity = commentDto.toEntity(CommentNo, boardWriter);                              //CommentWriteRequestDto -> CommentEntity
                     
         commentRepository.save(commentEntity);
     }
