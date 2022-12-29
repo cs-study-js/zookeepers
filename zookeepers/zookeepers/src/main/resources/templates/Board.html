@@ -1,80 +1,236 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<div class="wrapper">
-	<head>
-		<title>Board</title>
-		<meta http-equiv="Content_Type" content="text/html; charset=UTF-8"/>
-		<link rel="stylesheet" type="text/css" href="/css/navbar.css">
-		<link rel="stylesheet" type="text/css" href="/css/board.css">
-		
-	</head>	
-	<body>
-		<th:block th:if="${loginUser == null}">
-			<div class="login"><a href = "login.do">로그인.&emsp;</a></div>
-		</th:block>
-		<th:bolck th:if="${loginUser != null}">
-			<div class="logout"> <a th:text="${loginUser.getMemberNickname()}">userId</a> 
-				<a style="color:grey" href = "logout.do">로그아웃.&emsp;</a></div>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Zookeepers.</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      html,
+body {
+  height: 100%;
+}
+
+main{
+    display: flex;
+	flex-direction:column;
+	height:100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="id"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.page{
+    margin: 0 auto;
+}
+.search{
+    margin: 0 auto;
+}
+    </style>
+    
+  </head>
+  <body>
+    <th:bolck th:if="${loginUser == null}">
+      <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">Welcome to Zookeepers!</h4>
+                <p class="text-white"> are you member? please <a style="color:grey" href="/login.do">login </a></p>
+                <p class="text-white"> want to join us? please <a style="color:grey" href="/join.do">join</a></p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Contact</h4>
+                <ul class="list-unstyled">
+                  <li><a href="/board/board.do" class="text-white">Community.</a></li>
+                  <li><a href="/tradeBoard.do" class="text-white">Trade market.</a></li>
+                  <li><a href="/mypage.do" class="text-white">My page.</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+          <div class="container">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                  <strong>Zookeepers.</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+      </th:bolck>
+<th:bolck th:if="${loginUser != null}">
+<header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">        
+        <div class="col-sm-8 col-md-7 py-4">
+        <h4 class="text-white">Hi! <a th:text="${loginUser.getMemberNickname()}">userId</a>!</h4>
+        <p class="text-muted"><a style="color:grey" href = "logout.do">logout..&emsp;</a></p>
+      </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="/board/board.do" class="text-white">Community.</a></li>
+            <li><a href="/tradeBoard.do" class="text-white">Trade market.</a></li>
+            <li><a href="/mypage.do" class="text-white">My page.</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="/" class="navbar-brand d-flex align-items-center">
+            <strong>Zookeepers.</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+</th:bolck>
+
+<main>
+    <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" style="padding-right:350; padding-left:25;">Title</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
+          </tr>
+          </thead>
+          <tbody>
+        <tr th:each="board : ${list}">
+            <th scope="row">#</th>
+            <td><a th:text = "${board.boardTitle}" th:href="@{/board/boardDetail.do(boardNo=${board.getBoardNo()})}" style="text-decoration: none; color: black;">{board.title}</a></td>
+            <td th:text = "${board.boardWriter}"></td>
+            <td th:text = "${board.boardDate}"></td>
+        </tr>
+        </tbody>
+        </table>
+        </div></div>
+        <th:bolck th:if="${loginUser != null}">
+			<button class="btn btn-outline-dark" type="button" onclick="location.href='boardWrite.do'" style="float:right">wirte</button>
 		</th:bolck>
-		
-		<div class="icon">
-			<div class="align"><a href = "/">zookeepers.</a></div>
-		</div>
-		<div class="navbar">
-			<ul class = "dep1">
-				<li>
-					<a href="/">오늘의 베스트</a>
-				</li>
-				<li>
-					<a href="board.do">커뮤니티</a>
-				</li>
-				<li>
-					<a href="tboard.do">거래게시판</a>
-				</li>
-				<li>
-					<a href="mypage.do">마이페이지</a>
-				</li>
-			</ul>
-		</div>
-		<br><br>
-		<div class="main-content">
-			<div class="category">
-				<ul>		
-					<li><a style="text-decoration:none;">{카테고리1}</a></li>
-					<li><a style="text-decoration:none;">{카테고리2}</a></li>
-					<li><a style="text-decoration:none;">{카테고리3}</a></li>
-				</ul>
-			</div>
-			<div class="boardlist">
-				<table>
-					<tr>
-						<th style="padding-right:350; padding-left:25;">제목</th>
-						<th>작성자</th>
-						<th>등록일</th>
-					</tr>
-					<tr th:each="board : ${list}">
-						<td><a th:text = "${board.boardTitle}" th:href="@{/boardDetail.do(boardNo=${board.getBoardNo()})}" style="text-decoration: none; color: black;">{board1.title}</a></td>
-						<td th:text = "${board.boardWriter}"></td>
-						<td th:text = "${board.boardDate}"></td>
-					</tr>
-				</table>
-				<th:bolck th:if="${loginUser != null}">
-					<button class="write" type="button" onclick="location.href='boardWrite.do'" style="float:right">wirte</button>
-				</th:bolck>
-			</div>
-			<div class="page">
-				<th:block th:each="page : ${#numbers.sequence(pageNumbers.startPage, pageNumbers.endPage)}">
-					<a th:if="${page != pageNumbers.nowPage}" th:href="@{/board.do(page=${page-1})}" th:text="${page}" style="text-decoration: none; color: black;"></a>
-					<strong th:if="${page == pageNumbers.nowPage}" th:text="${page}" style="color : grey"></a>
-				</th:block>
-				<form name="boardSearch" action="boardSearch.do" method="POST">
-				<input name="search" placeholder="키워드 입력" type="text"><button type="submit" value="search">search</button>
-				</form>
-			</div>
-		</div>
-		
-	</body>
-	<footer>
-			footer
-	</footer>
-</div>
+
+        <div class="page" style="padding-top:5%;">
+        <th:block th:each="page : ${#numbers.sequence(pageNumbers.startPage, pageNumbers.endPage)}">
+			<a th:if="${page != pageNumbers.nowPage}" th:href="@{/board/board.do(page=${page-1})}" th:text="${page}" style="text-decoration: none; color: black;"></a>
+			<strong th:if="${page == pageNumbers.nowPage}" th:text="${page}" style="color : grey"></a>
+		</th:block>
+        </div>
+      <div class="main-content">
+        <div class="search col-md-6">
+        <form name="boardSearch" action="boardSearch.do" method="POST" style="padding-top:5%">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search"><button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
+        </div>
+      </div>
+</main>
+   
+   <footer class="text-muted py-5">
+     <div class="container">
+       <p class="float-end mb-1">
+         <a href="#">Back to top</a>
+       </p>
+       <p class="mb-1">Zookeepers </p>
+     </div>
+   </footer>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    </body>
 </html>

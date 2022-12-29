@@ -107,18 +107,16 @@ main{
 }
 
 .main-content{
+    width: 60%;
     margin: 0 auto;
 }
-.good-button{
-    display:flex; 
-    margin:0 auto; 
-    padding-top: 15px;
+.comment{
+    margin:0 auto;
 }
     </style>
     
   </head>
   <body>
-    
     <th:bolck th:if="${loginUser == null}">
       <header>
         <div class="collapse bg-dark" id="navbarHeader">
@@ -184,49 +182,83 @@ main{
   </div>
 </header>
 </th:bolck>
+
 <main>
-
     <div class="main-content">
-        <h4>글을 작성하는 공간입니다.</h4>
-        <div id="write_area">
-            <form name="boardWriteForm" action="write.do" method="post">
-                <div class="title">
-                    <textarea name="boardTitle" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" style="resize:none;"></textarea>
-                </div>
-                <div class="category">
-                    <select id="boardCategory" name="boardCategory">
-                        <option value="BC01" selected="selected">자유글</option>
-                        <option value="BC02">정보글</option>
-                        <option value="BC03" >홍보글</option>
-                        <option value="BC04">건의글</option>
-                    </select>
-                </div>
-                <div class="writeDetail"><br></div>
-                <div id="in_content">
-                    <textarea name="boardDetail" placeholder="내용" style="resize:none;" cols="55" rows="10" required></textarea>
-                </div>
-
-                  <input type="file" name="SelectFile">
-
-
-                <div class="bt_se">
-                    <button type="submit" href="board.do">write</button>
-                </div>
-            </form>
-        </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <table>
+        <tr>
+            <th th:text="${tradeBoard.getTradeBoardTitle()}" rowspan="3" width="700px" style="text-align:left">제목입니다!!!!{제목}</th>
+            <td th:text="${tradeBoard.getTradeBoardWriter()}">{작성자}</td>
+            <td th:text="${tradeBoard.getMemberTradeGrade()}">{등급}</td>
+        </tr>
+        <tr>
+            <td style="float:left" th:text="${tradeBoard.getTradeBoardCategory()}">{카테고리}</td>
+            <td style="float:right" th:text="${tradeBoard.getTradeBoardDate()}">{작성시간}</td>
+        </tr>
+        <tr th:if="${loginUser!=null}">
+            <td><a th:if="${loginUser.getMemberNo()==tradeBoard.getMemberNo()}" th:href="@{tradeBoardDelete.do(tradeBoardNo=${tradeBoard.getTradeBoardNo()})}" style="text-decoration: none; color: black;">글삭제</a></td>
+            <td><a th:if="${loginUser.getMemberNo()==tradeBoard.getMemberNo()}" th:href="@{tradeBoardModify.do/{tradeBoardNo}(tradeBoardNo=${tradeBoard.getTradeBoardNo()})}" style="text-decoration: none; color: black;">글 수정</a></td>
+        </tr>
+    </table>
+    </div>
+    
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <img class="img" src="${tradeBoard.getTradeBoardImg()}">
+      <p>판매가: <a th:text="${tradeBoard.getTradeBoardPrice()}"></a>원</p>
     </div>
 
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <div class="d-flex text-muted pt-3">
+          
+          <p class="pb-3 mb-0 small lh-sm border-bottom" th:text="${tradeBoard.getTradeBoardDetail()}"></p>
+        </div>
 
+    </div>
+
+        <!-- <small class="d-block text-end mt-3">
+          <a href="#">All updates</a>
+        </small> -->
+    
+    <div class="comment"><div class="my-3 p-3 bg-body rounded shadow-sm>">
+        <table class="table table-striped col-md-8">
+            <thead>
+            <tr>
+              <th scope="col">댓글</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>작성자</th>
+                <th width="60%">내용</th>
+                <th>작성시간</th>
+              </tr>
+          <tr th:each="comment : ${comment}">
+            <td th:text = ${comment.getTradeComWriter()}></td>
+            <td th:text = "${comment.getTradeComDetail()}"></td>
+            <td th:text = "${comment.getTradeComDate()}"></td>
+          </tr>
+          </tbody>
+        </table>
+        <th:block th:if="${loginUser != null}"> 
+            <form th:action="@{/tradeBoardCommentWrite.do(tradeBoardNo=${tradeBoard.getTradeBoardNo()})}" method="POST">
+            <td><textarea name="tradeComDetail" cols="50" rows="1"></textarea> <button value="write">wirte</button></td>
+            </form>
+        </th:block>   
+    </div></div>
+  </div>
+  
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">Zookeepers </p>
+    </div>
+  </footer>
 </main>
    
-   <footer class="text-muted py-5">
-     <div class="container">
-       <p class="float-end mb-1">
-         <a href="#">Back to top</a>
-       </p>
-       <p class="mb-1">Zookeepers </p>
-     </div>
-   </footer>
+   
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
     </body>

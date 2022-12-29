@@ -115,13 +115,20 @@ main{
     padding-top: 15px;
 }
 .main-content .mybusscard{
+	width: 400px;
 	margin:0 auto;
-	background: gray;
+	background: #ddd;
 	
 }
 .main-content .myinfo {
 	width: 400px;
 	margin:0 auto;
+}
+.page{
+    margin: 0 auto;
+}
+.search{
+    margin: 0 auto;
 }
     </style>
     
@@ -193,52 +200,49 @@ main{
   </header>
   </th:bolck>
 <main>
-    <div class="main-content">
-        <h2>bussness card</h2>
-        <div class="mybusscard">
-            <table border="1">
-                <tr>
-                    <td rowspan="3"> img </td>
-                    <td colspan="1" th:text="${loginUser.getMemberId()}">사용자 ID</td>
-                    <td colspan="1" th:text="${loginUser.getMemberGrade()}">등급</td>
-                    <td colspan="2" th:text="${loginUser.getMemberWrcount()}">작성 게시물 수</td>
-                </tr>
-                <tr>
-                    <td colspan="2" th:text="${loginUser.getMemberNickname()}">닉네임(변경 가능)</td>
-                    <td colspan="2" th:text="${loginUser.getMemberCmcount()}">작성 댓글 수</td>
-                </tr>
-                <tr>
-                    <td colspan="2">판매 횟수</td>
-                    <td colspan="2">판매 등급</td>
-                </tr>
+        <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" style="padding-right:350; padding-left:25;">Title</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성일</th>
+                <th scope="col">판매가</th>
+                <th scope="col">판매상태</th>
+              </tr>
+              </thead>
+              <tbody>
+            <tr th:each="board : ${list}">
+                <th scope="row">#</th>
+                <td><a th:text = "${board.tradeBoardTitle}" th:href="@{/tradeBoardDetail.do(tradeBoardNo=${board.getTradeBoardNo()})}" style="text-decoration: none; color: black;"></a></td>
+                <td th:text = "${board.tradeBoardWriter}"></td>
+                <td th:text = "${board.tradeBoardDate}"></td>
+                <td th:text = "${board.tradeBoardPrice}"></td>
+                <td th:text = "${board.tradeBoardStatus}"></td>
+            </tr>
+            </tbody>
             </table>
-        </div>
-        <br><br><br>
-        <div class="myinfo">
-            <h2>개인 정보</h2>
-            <table width="700">
-                <tr>
-                    <td style="padding-bottom:30;" th:text="${loginUser.getMemberName()}">이름 : {이름 변수}</td>
-                </tr>
-                <tr>
-                    <td style="padding-bottom:30;" th:text="${loginUser.getMemberPhonenum()}">전화번호 : {전화번호 변수}(변경가능)</td>
-                </tr>
-                <tr>
-                    <td style="padding-bottom:30;" th:text="${loginUser.getMemberAddress()}">주소 : {주소 , 상세주소}(변경가능)</td>
-                </tr>
-                <tr>
-                    <td style="padding-bottom:30;" th:text="${loginUser.getMemberDetailaddress()}"></td>
-                </tr>
-            </table>
-            
-            
-            <br>
-            <a href="" style="text-decoration: none; color:black">수정하기.</a><!-- 작성자 검색 게시글 조회페이지로 .. --><br>
-            <a href="" style="text-decoration: none; color:black">활동 글 목록</a><!-- 작성자 검색 게시글 조회페이지로 .. -->
-        </div>
-        
-    </div>
+            </div></div>
+            <th:bolck th:if="${loginUser != null}">
+                <button class="btn btn-outline-dark" type="button" onclick="location.href='tradeBoardWrite.do'" style="float:right">wirte</button>
+            </th:bolck>
 
+    
+            <div class="page" style="padding-top:5%;">
+            <th:block th:each="page : ${#numbers.sequence(pageNumbers.startPage, pageNumbers.endPage)}">
+                <a th:if="${page != pageNumbers.nowPage}" th:href="@{/board/tradeBoard.do(page=${page-1})}" th:text="${page}" style="text-decoration: none; color: black;"></a>
+                <strong th:if="${page == pageNumbers.nowPage}" th:text="${page}" style="color : grey"></a>
+            </th:block>
+            </div>
+            
+        <div class="main-content">
+            <div class="search col-md-6">
+            <form name="boardSearch" action="tradeBoardSearch.do" method="POST" style="padding-top:5%">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search"><button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+            </div>
+        </div>
 
 </main>
    

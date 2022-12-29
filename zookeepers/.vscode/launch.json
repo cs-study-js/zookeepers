@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ZookeepersApplication",
+            "request": "launch",
+            "mainClass": "com.zookeepers.zookeepers.ZookeepersApplication",
+            "projectName": "zookeepers"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ZookeepersApplication<zookeepers>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

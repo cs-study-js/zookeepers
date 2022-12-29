@@ -118,99 +118,103 @@ main{
     
   </head>
   <body>
-    
     <th:bolck th:if="${loginUser == null}">
-      <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-8 col-md-7 py-4">
-                <h4 class="text-white">Welcome to Zookeepers!</h4>
-                <p class="text-white"> are you member? please <a style="color:grey" href="/login.do">login </a></p>
-                <p class="text-white"> want to join us? please <a style="color:grey" href="/join.do">join</a></p>
-              </div>
-              <div class="col-sm-4 offset-md-1 py-4">
-                <h4 class="text-white">Contact</h4>
-                <ul class="list-unstyled">
-                  <li><a href="/board/board.do" class="text-white">Community.</a></li>
-                  <li><a href="/tradeBoard.do" class="text-white">Trade market.</a></li>
-                  <li><a href="/mypage.do" class="text-white">My page.</a></li>
-                </ul>
+        <header>
+          <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                  <h4 class="text-white">Welcome to Zookeepers!</h4>
+                  <p class="text-white"> are you member? please <a style="color:grey" href="/login.do">login </a></p>
+                  <p class="text-white"> want to join us? please <a style="color:grey" href="/join.do">join</a></p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                  <h4 class="text-white">Contact</h4>
+                  <ul class="list-unstyled">
+                    <li><a href="/board/board.do" class="text-white">Community.</a></li>
+                    <li><a href="/tradeBoard.do" class="text-white">Trade market.</a></li>
+                    <li><a href="/mypage.do" class="text-white">My page.</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+          <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+              <a href="/" class="navbar-brand d-flex align-items-center">
+                    <strong>Zookeepers.</strong>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </div>
+        </header>
+        </th:bolck>
+  <th:bolck th:if="${loginUser != null}">
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">        
+          <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">Hi! <a th:text="${loginUser.getMemberNickname()}">userId</a>!</h4>
+          <p class="text-muted"><a style="color:grey" href = "logout.do">logout..&emsp;</a></p>
         </div>
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-          <div class="container">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                  <strong>Zookeepers.</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="/board/board.do" class="text-white">Community.</a></li>
+              <li><a href="/tradeBoard.do" class="text-white">Trade market.</a></li>
+              <li><a href="/mypage.do" class="text-white">My page.</a></li>
+            </ul>
           </div>
         </div>
-      </header>
-      </th:bolck>
-<th:bolck th:if="${loginUser != null}">
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">        
-        <div class="col-sm-8 col-md-7 py-4">
-        <h4 class="text-white">Hi! <a th:text="${loginUser.getMemberNickname()}">userId</a>!</h4>
-        <p class="text-muted"><a style="color:grey" href = "logout.do">logout..&emsp;</a></p>
-      </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="/board/board.do" class="text-white">Community.</a></li>
-            <li><a href="/tradeBoard.do" class="text-white">Trade market.</a></li>
-            <li><a href="/mypage.do" class="text-white">My page.</a></li>
-          </ul>
-        </div>
       </div>
     </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="/" class="navbar-brand d-flex align-items-center">
-            <strong>Zookeepers.</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="/" class="navbar-brand d-flex align-items-center">
+              <strong>Zookeepers.</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
     </div>
-  </div>
-</header>
-</th:bolck>
+  </header>
+  </th:bolck>
 <main>
 
     <div class="main-content">
         <h4>글을 작성하는 공간입니다.</h4>
         <div id="write_area">
-            <form name="boardWriteForm" action="write.do" method="post">
+            <form name="boardWriteForm" action="tradeBoardWrite.do" method="post">
                 <div class="title">
-                    <textarea name="boardTitle" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" style="resize:none;"></textarea>
+                    <textarea name="tradeBoardTitle" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" style="resize:none;"></textarea>
                 </div>
                 <div class="category">
-                    <select id="boardCategory" name="boardCategory">
-                        <option value="BC01" selected="selected">자유글</option>
-                        <option value="BC02">정보글</option>
-                        <option value="BC03" >홍보글</option>
-                        <option value="BC04">건의글</option>
+                    <select id="tradeBoardCategory" name="tradeBoardCategory">
+                        <option value="TBC01" selected="selected">포유류</option>
+                        <option value="TBC02">파충류</option>
+                        <option value="TBC03" >조류</option>
+                        <option value="TBC04">어류</option>
+                        <option value="TBC05">양서류</option>
+                        <option value="TBC06" >절지류</option>
+                        <option value="TBC07">곤충</option>
+                        <option value="TBC08">먹이생물</option>
+                        <option value="TBC09" >사육용품</option>
                     </select>
+                </div>
+                <div class="price">
+                    <textarea name="tradeBoardPrice" placeholder="가격을 입력해주세요" style="resize:none;" rows="1"required></textarea>
                 </div>
                 <div class="writeDetail"><br></div>
                 <div id="in_content">
-                    <textarea name="boardDetail" placeholder="내용" style="resize:none;" cols="55" rows="10" required></textarea>
+                    <textarea name="tradeBoardDetail" placeholder="내용" style="resize:none;" cols="55" rows="10" required></textarea>
                 </div>
-
-                  <input type="file" name="SelectFile">
-
-
+                  <input type="file" name="tradeBoardImg">
                 <div class="bt_se">
-                    <button type="submit" href="board.do">write</button>
+                    <button type="submit">write</button>
                 </div>
             </form>
         </div>
