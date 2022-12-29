@@ -65,9 +65,9 @@ public class TradeBoardController {
 	}
 
 	@PostMapping("/tradeCommentWrite.do")
-	public String tradeBoardCommentWriteDo(String tradeBoardNo, TradeBoardCommentWriteRequestDto tradeCommentDto, @SessionAttribute(name = "memberNo", required = false)String memberNo){
+	public String tradeBoardCommentWriteDo(String tradeBoardNo, TradeBoardCommentWriteRequestDto tradeCommentDto, @SessionAttribute(name = "loginUser", required = false)MemberEntity loginUser){
 		tradeCommentDto.setTradeBoardNo(tradeBoardNo);			//tradeBoardCommentDto 에 tradeBoardNo 저장
-		tradeCommentDto.setMemberNo(memberNo);					//tradeBoardCommentDto 에 memberNo 저장
+		tradeCommentDto.setMemberNo(loginUser.getMemberNo());					//tradeBoardCommentDto 에 memberNo 저장
 
 		tradeCommentService.write(tradeCommentDto);				//tradeBoardCommentDto service로 전송
 
@@ -75,15 +75,15 @@ public class TradeBoardController {
 	}
 
 	@GetMapping("/tradeBoardWrite.do")
-	public String tradeBoardWrite(@SessionAttribute(name = "loginUser", required = false)MemberEntity loginUser, @SessionAttribute(name ="memNo", required = false)String memberNo , HttpServletRequest request, Model model){
+	public String tradeBoardWrite(@SessionAttribute(name = "loginUser", required = false)MemberEntity loginUser, HttpServletRequest request, Model model){
 		model.addAttribute("loginUser", loginUser);
 
 		return "tradeBoardWrite";
 	}
 
 	@PostMapping("/tradeBoardWrite.do")
-	public String tradeBoard(TradeBoardWriteRequestDto tradeBoardWriteDto, @SessionAttribute(name = "loginUser", required = false)MemberEntity loginUser,@SessionAttribute(name ="memberNo", required = false)String memberNo , HttpServletRequest request, Model model){
-		tradeBoardService.create(tradeBoardWriteDto, memberNo);			//tradeBoard 작성 값 Service로 전송
+	public String tradeBoard(TradeBoardWriteRequestDto tradeBoardWriteDto, @SessionAttribute(name = "loginUser", required = false)MemberEntity loginUser, HttpServletRequest request, Model model){
+		tradeBoardService.create(tradeBoardWriteDto, loginUser.getMemberNo());			//tradeBoard 작성 값 Service로 전송
 	
 		return "redirect:/tradeBoard.do";
 	}
@@ -107,9 +107,9 @@ public class TradeBoardController {
 	}
 
 	@PostMapping("/tradeBoardCommentWrite.do")
-	public String tradeBoardCommentWriteDo(String tradeBoardNo,TradeBoardCommentWriteRequestDto tradeCommentWriteRequestDto,@SessionAttribute(name = "memberNo", required = false)String memberNo,String a){
+	public String tradeBoardCommentWriteDo(String tradeBoardNo,TradeBoardCommentWriteRequestDto tradeCommentWriteRequestDto,@SessionAttribute(name = "loginUser", required = false)MemberEntity loginUser,String a){
 		
-		tradeCommentWriteRequestDto.setMemberNo(memberNo);
+		tradeCommentWriteRequestDto.setMemberNo(loginUser.getMemberNo());
 		tradeCommentWriteRequestDto.setTradeBoardNo(tradeBoardNo);
 
 		tradeCommentService.write(tradeCommentWriteRequestDto);
